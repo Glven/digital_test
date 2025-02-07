@@ -1,0 +1,304 @@
+html
+    color: var(--default)
+    font-size: var(--font-size)
+    font-family: 'Inter', serif
+
+input
+    font-size: var(--font-size)
+    border: none
+    outline: none
+    &[type='number']
+        -moz-appearance: textfield
+        &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+            -webkit-appearance: none
+            margin: 0
+button
+    outline: none
+.checkbox
+    position: relative
+    .error
+        position: absolute
+        top: 100%
+        left: 0
+        z-index: 100
+        height: 20px
+        display: none
+        transition: all 0.2s
+        transition-behavior: allow-discrete
+        white-space: nowrap
+        font-size: 10px
+        color: red
+        transform: translateY(4px)
+        opacity: 0
+    input[type='checkbox']
+        position: absolute
+        z-index: -2
+        opacity: 0
+        &.invalid ~ .error 
+            display: block
+            opacity: 1
+            @starting-style
+                opacity: 0   
+    &__elem
+        width: 16px !important
+        height: 16px  !important
+        border-radius: 4px
+        background: var(--secondary-default)
+        transition: all 0.2s
+        cursor: pointer
+        position: relative
+        &:hover
+            background: var(--secondary-hover)
+        &::after
+            content: '✔'
+            width: 100%
+            height: 100%
+            color: var(--primary-default)
+            position: absolute
+            font-size: 10px
+            top: 0
+            left: 0
+            z-index: 3
+            display: none
+            opacity: 0
+            transition: all 0.2s
+            transition-behavior: allow-discrete
+    input[type='checkbox']:checked + .checkbox__elem
+        background: var(--secondary-active)
+        &::after
+            display: grid
+            place-items: center
+            opacity: 1
+            @starting-style
+                opacity: 0
+textarea
+    resize: none
+    outline: none
+    border: none
+    font-size: var(--font-size)
+.btn
+    background: transparent
+    font-size: var(--font-size)
+    border: var(--border-width) solid transparent
+    width: 100%
+    padding: var(--button-padding)
+    transition: all 0.3s
+    border-radius: var(--border-radius)
+    cursor: pointer
+    max-height: 48px
+    &--bordered
+        border-color: var(--primary-default)
+        color: var(--primary-default)
+        &:hover
+            background: var(--tertiary-hover)
+        &:active
+            background: var(--teriary-active)
+    &--secondary
+        border-color: var(--secondary-default)
+        background: var(--secondary-default)
+        color: var(--primary-default)
+        &:hover
+            background: var(--secondary-hover)
+            border-color: var(--secondary-hover)
+        &:active
+            background: var(--secondary-active)
+            border-color: var(--secondary-active)
+    &--primary
+        border-color: var(--primary-default)
+        color: var(--light)
+        background: var(--primary-default)
+        &:hover
+            background: var(--primary-hover)
+            border-color: var(--primary-hover)
+        &:active
+            background: var(--primary-active)
+            border-color: var(--primary-active)
+
+.sticker 
+    border-radius: var(--sticker-border-radius)
+    padding: var(--sticker-padding)
+    color: var(--light)
+    font-size: var(--sticker-font-size)
+    font-weight: 700
+    backgorund: transparent
+    display: flex
+    align-items: center
+    gap: 4px
+    cursor: default
+    &--availability
+        color: #64B847
+        background: #F0F7EE
+    &--notAvailability
+        color: #E16A6A
+        background: #F7EEEE
+    &--hit
+        background: #EC7B52 
+    &--novelty
+        background: var(--primary-default)
+    &--percent
+        background: #FCDF28
+    &--stock
+        background: #67BB49
+    &--light
+        background: var(--light) 
+        color: var(--gray)
+    &--thin
+        font-weight: 400
+.icon
+    border: none
+    background: var(--light)
+    box-shadow: var(--box-shadow-default)
+    transition: all 0.1s
+    display: grid
+    place-items: center
+    width: 28px
+    height: 28px
+    border-radius: 7px
+    cursor: pointer
+    svg
+        fill: var(--default)
+        transition: all 0.1s
+    &:hover
+        box-shadow: var(--box-shadow-hover)
+        svg
+            fill: var(--primary-default)
+    &:active
+        box-shadow: var(--box-shadow-active)
+        background: var(--primary-default)
+        svg
+            fill: var(--light)
+    &--secondary
+        background: var(--secondary-default) 
+        svg
+            fill: var(--primary-default) !important
+        &:hover
+            background: var(--secondary-hover)
+        &:active
+            background: var(--secondary-active)
+    &--borderCircle
+        border-radius: 50%
+.title
+    font-size: 28px
+    font-weight: 500
+.form-control
+    width: 100%
+    position: relative
+    height: 52px
+    border-radius: var(--border-radius)
+    .clear
+        position: absolute
+        z-index: 3
+        top: 50%
+        right: 0
+        transform: translate(-16px, -50%) rotate(45deg)
+        font-weight: 500
+        font-size: 24px
+        cursor: pointer
+        transition: all 0.2s
+        transition-behavior: allow-discrete
+        opacity: 0
+        display: none
+        border: none
+        background: transparent
+        outline: none
+    .error
+        position: absolute
+        top: 100%
+        left: 0
+        z-index: 100
+        height: 20px
+        display: none
+        transition: all 0.2s
+        transition-behavior: allow-discrete
+        font-size: 10px
+        color: red
+        transform: translateY(4px)
+        opacity: 0
+    .input
+        border: none
+        height: 100%
+        padding: 16px
+        background: #F5F8FA
+        transition: all 0.2s
+        border-radius: var(--border-radius)
+        font-size: var(--font-size)
+        width: 100%
+        &::placeholder
+            color: var(--gray)
+        &:not(:placeholder-shown) + .clear
+            display: block
+            opacity: 1
+            @starting-style
+                opacity: 0
+        &:hover
+            background: #EFF2F6
+        &.invalid
+            background: #FAF1F1
+            & ~ .error
+                display: block
+                opacity: 1
+                @starting-style
+                    opacity: 0
+        &.valid
+            background: #F0F7EE
+
+.slider 
+    position: relative
+    width: 100%
+    max-width: 1900px
+    margin: auto
+    &-wrapper 
+        width: 100%
+        overflow: hidden
+    &-track 
+        display: flex
+        transition: transform 0.3s ease-in-out
+        gap: 8px
+    &__buttons
+        position: absolute
+        z-index: 20
+        right: 0
+        bottom: 100%
+        transform: translateY(-50%)
+        .slide-btn
+            border: var(--border-width) solid var(--tertiary-hover)
+            color: var(--primary-default)
+            font-size: 20px
+            background: transparent
+            width: 40px
+            height: 40px
+            border-radius: 50%
+            cursor: pointer
+            transition: all 0.2s
+            &:hover
+                background: var(--secondary-hover)
+            &:active
+                background: var(--secondary-active)
+@media screen and (max-width: 1400px)
+    :root 
+        --border-radius: 8px
+        --font-size: 14px
+        --button-padding: 8px 30px
+    .btn
+        max-height: 36px
+    .title
+        font-size: 24px
+    .form-control
+        height: 44px
+@media screen and (min-width: 1025px) and (max-width: 1599px)
+    :root
+        --sticker-font-size: 10px
+@media screen and (max-width: 1024px)
+    :root
+        --sticker-font-size: 8px
+        --sticker-padding: 2px 4px
+@media screen and (max-width: 767px)
+    .slider
+        &__buttons
+            top: 100%
+            left: 0
+            transform: translateY(20px) 
+            justify-content: center
+            width: 100%
+            display: flex
+            gap: 20px

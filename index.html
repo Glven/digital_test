@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+    <section class="products">
+        <div class="container">
+
+            <h1 class="title products__title">Новые поступления</h1>
+
+            <div class="slider">
+
+                <div class="slider__buttons">
+                    <button id="prevBtn" class="slide-btn">
+                        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.1875 14.5625L1.625 8L8.1875 1.4375" stroke="#4092F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                    </button>
+                    <button id="nextBtn" class="slide-btn">
+                        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.8125 1.4375L8.375 8L1.8125 14.5625" stroke="#4092F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                    </button>
+                </div>
+                <div class="slider-wrapper">
+                    <div id="products-wrapper" class="slider-track"></div>
+                </div>
+            </div>
+
+    </section>
+
+    <section class="feedback">
+        <form id="feedback-form" class="feedback__form form">
+            <div class="form-header">
+                <svg  viewBox="0 0 46 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="form-header__img">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.58997 0.0813298C3.34078 0.555892 1.52135 2.18464 0.767455 4.39887L0.5 5.18413V30.0097V54.8353L0.764216 55.6111C1.42672 57.5555 2.90628 59.0591 4.81607 59.7286L5.58997 60H23H40.41L41.1839 59.7286C43.0937 59.0591 44.5733 57.5555 45.2358 55.6111L45.5 54.8353V35.3505V15.8656L45.1995 15.032C45.0342 14.5735 44.7055 13.9028 44.4693 13.5417C43.9428 12.7369 32.5807 1.78003 31.5229 1.0571C31.13 0.788537 30.4701 0.445204 30.0566 0.294137L29.3046 0.0194712L17.6787 0.00162964C11.2844 -0.00823018 5.84447 0.0276877 5.58997 0.0813298ZM27.5362 8.9723L27.5694 14.4625L27.9465 15.2395C28.3853 16.1437 29.0126 16.7646 29.927 17.1996L30.5771 17.5089L36.3323 17.5424L42.0874 17.5759V35.8032C42.0874 56.2752 42.1554 54.7139 41.2228 55.66C40.2931 56.6035 41.6672 56.5373 23 56.5373C4.33275 56.5373 5.70693 56.6035 4.7772 55.66C3.83613 54.7053 3.9126 56.9733 3.9126 30.0097C3.9126 3.04103 3.83578 5.31454 4.77928 4.35732C5.66887 3.45456 5.00879 3.50175 16.8935 3.49142L27.5029 3.48214L27.5362 8.9723ZM36.3323 10.3315C38.4159 12.3314 40.1208 13.9853 40.1208 14.0069C40.1208 14.0285 38.1464 14.0462 35.7332 14.0462C31.8987 14.0462 31.3227 14.023 31.1637 13.8618C31.0053 13.7009 30.982 13.1362 30.982 9.44663V5.21594L31.7629 5.95578C32.1923 6.36262 34.2486 8.33176 36.3323 10.3315ZM9.0906 23.6786C8.6022 23.9402 8.1928 24.6327 8.1928 25.1972C8.1928 25.7796 8.60197 26.4559 9.11524 26.7216C9.56478 26.9543 9.77092 26.9579 22.653 26.9579C35.535 26.9579 35.7411 26.9543 36.1907 26.7216C36.7039 26.4559 37.1131 25.7796 37.1131 25.1972C37.1131 24.6148 36.7039 23.9386 36.1907 23.6728C35.7409 23.44 35.5402 23.4366 22.6287 23.4417C9.80898 23.4467 9.51365 23.4519 9.0906 23.6786ZM9.0906 33.0689C8.6022 33.3305 8.1928 34.023 8.1928 34.5875C8.1928 35.1699 8.60197 35.8462 9.11524 36.1119C9.56478 36.3446 9.77092 36.3482 22.653 36.3482C35.535 36.3482 35.7411 36.3446 36.1907 36.1119C36.7039 35.8462 37.1131 35.1699 37.1131 34.5875C37.1131 34.0051 36.7039 33.3289 36.1907 33.0631C35.7409 32.8303 35.5402 32.8269 22.6287 32.832C9.80898 32.837 9.51365 32.8422 9.0906 33.0689ZM9.0906 42.4572C8.60231 42.721 8.1928 43.4147 8.1928 43.9778C8.1928 44.5641 8.60185 45.2365 9.12253 45.506C9.57068 45.7379 9.74559 45.7449 14.2605 45.7129C18.7742 45.681 18.9455 45.6715 19.2538 45.4378C19.8272 45.0032 20.0368 44.6125 20.0368 43.9778C20.0368 43.3431 19.8272 42.9524 19.2538 42.5178C18.9449 42.2838 18.7801 42.275 14.2288 42.2496C9.72465 42.2245 9.50463 42.2333 9.0906 42.4572Z" fill="#4092F1"/>
+                </svg>    
+                <div class="header__wrapper">
+                    <h3 class="form-header__title">
+                        Не нашли ответа на свой вопрос?
+                    </h3>
+                    <p class="form-header__subtitle">
+                        Напишите нам, и мы предоставим необходимую информацию.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-inputs">
+                <div onclick="onInputWrapperClick(this)" class="form-control">
+                    <input type="text" class="input required" placeholder="Имя*">
+                    <button class="clear" type="button">+</button>
+                    <span class="error">Поле обязательно к заполнению</span>
+                </div>
+                <div onclick="onInputWrapperClick(this)"  class="form-control">
+                    <input type="text" class="input required" placeholder="Телефон*">
+                    <button class="clear" type="button">+</button>
+                    <span class="error">Поле обязательно к заполнению</span>
+                </div>
+                <div onclick="onInputWrapperClick(this)"  class="form-control">
+                    <input type="text" class="input required" placeholder="Email*">
+                    <button class="clear" type="button">+</button>
+                    <span class="error">Поле обязательно к заполнению</span>
+                </div>
+                <div class="form-control form-inputs__large">
+                    <textarea type="text" class="input" placeholder="Вопрос"></textarea>
+                </div>
+            </div>
+
+            <div class="form__buttons">
+                <button class="btn btn--primary form__submit-btn" type="submit">
+                    Задать вопрос
+                </button>
+                <div class="form__check">
+                    <label class="checkbox">
+                        <input type="checkbox" class="required" id="agreement">
+                        <div class="checkbox__elem"></div>
+                        <span class="error">Необходимо активировать</span>
+                    </label>
+                    <label for="agreement">
+                        Я согласен с условиями <a href="#">
+                            пользовательского соглашения
+                        </a>.
+                    </label>
+                </div>
+            </div>
+        </form>
+
+        <div id="modal-thanks" class="modal">
+            <div class="modal-container">
+                <svg viewBox="0 0 158 158" fill="none" xmlns="http://www.w3.org/2000/svg" class="modal__img">
+                    <g clip-path="url(#clip0_1_10427)">
+                    <mask id="mask0_1_10427" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="158" height="158">
+                    <circle cx="79" cy="79" r="79" fill="#C4C4C4"/>
+                    </mask>
+                    <g mask="url(#mask0_1_10427)">
+                    <circle cx="79" cy="79" r="79" fill="#E2EEFC"/>
+                    <ellipse cx="102.607" cy="79" rx="82.2402" ry="76.2227" fill="#EDF5FE"/>
+                    </g>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M47.5706 54.3491C41.5574 55.9683 37.0164 61.5702 37.0004 67.3881C36.9939 69.722 39.0676 70.9953 40.7094 69.6659C41.2253 69.248 41.4737 68.5957 41.674 67.1305C42.1656 63.5354 44.0054 60.8972 47.0389 59.4369C49.1784 58.4068 52.568 58.3778 54.7408 59.3706C57.8635 60.7975 59.931 63.7048 60.3297 67.2298C60.5479 69.1558 61.4092 70.2288 62.7371 70.2288C64.6081 70.2288 65.3777 68.4003 64.7695 65.3999C63.1568 57.4453 55.1577 52.3056 47.5706 54.3491ZM103.344 54.4331C100.804 55.0972 98.9768 56.1686 96.9796 58.1661C94.6194 60.5263 92.8521 64.6466 92.8521 67.7893C92.8521 68.9203 94.0637 70.2288 95.111 70.2288C96.5191 70.2288 97.3789 69.1934 97.6011 67.2298C97.9998 63.7048 100.067 60.7975 103.19 59.3706C105.33 58.3926 108.755 58.4078 110.823 59.4048C113.89 60.8827 115.767 63.5523 116.257 67.1305C116.457 68.5957 116.705 69.248 117.221 69.6659C118.863 70.9953 120.937 69.722 120.93 67.3881C120.918 62.9055 117.649 57.6588 113.584 55.5992C110.165 53.8665 106.924 53.4974 103.344 54.4331ZM17.1661 77.5579C16.5434 78.2519 13.1572 88.0059 13.143 89.1474C13.1198 90.9885 15.6596 92.0503 16.9155 90.7246C17.6373 89.9624 20.9498 80.3775 20.9498 79.0502C20.9498 78.4626 20.7134 77.8254 20.3854 77.5285C19.6367 76.8509 17.7855 76.8678 17.1661 77.5579ZM27.9539 77.5677C27.4639 78.1096 23.7271 88.4105 23.7271 89.2202C23.7271 89.4486 24.0524 90.0139 24.4499 90.4759C25.28 91.4412 26.8489 91.6183 27.6318 90.8351C28.223 90.2441 31.7506 80.2543 31.7506 79.1715C31.7506 78.7416 31.5342 78.0809 31.2701 77.7038C30.6581 76.8296 28.6946 76.7493 27.9539 77.5677ZM130.269 77.5575C129.582 78.2445 126.18 88.0084 126.18 89.2931C126.18 91.2085 128.744 92.0506 130.009 90.5509C130.364 90.13 131.487 87.3384 132.505 84.3475L134.354 78.9095L133.708 78.0408C132.889 76.9388 131.135 76.6922 130.269 77.5575ZM140.934 77.5579C140.265 78.3392 136.981 88.0004 136.981 89.1878C136.981 91.0712 139.37 92.0636 140.68 90.7246C141.35 90.0395 144.772 80.3608 144.788 79.1048C144.794 78.6404 144.546 77.9806 144.237 77.639C143.516 76.8425 141.588 76.795 140.934 77.5579ZM49.1722 92.5879C48.1502 93.6097 48.2107 94.2355 49.6206 97.2443C51.2398 100.7 52.7717 102.952 55.358 105.68C58.0906 108.563 60.3844 110.329 63.6564 112.069C80.0791 120.805 100.116 114.071 108.045 97.1508C109.436 94.183 109.404 92.9952 107.907 92.1556C106.375 91.2955 105.542 91.9281 103.807 95.2693C101.896 98.949 101.086 100.161 99.0546 102.385C95.8662 105.873 91.2363 108.693 86.1519 110.243C83.727 110.982 82.9503 111.069 78.8111 111.069C74.6726 111.069 73.8952 110.982 71.4721 110.243C63.0265 107.669 56.6522 102.018 53.1988 94.0451C52.2156 91.7754 50.5773 91.1826 49.1722 92.5879Z" fill="#4092F1"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_1_10427">
+                    <rect width="158" height="158" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>    
+                <h3 class="modal__title">Спасибо!</h3>
+                <span class="modal__subtitle">Вопрос отправлен</span>
+                <button class="btn btn--secondary modal__btn">Хорошо :)</button>
+                <button id="modal-close" class="icon icon--secondary icon--borderCircle modal__close">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L11 11M11 1L1 11" stroke="#4092F1" stroke-width="2" stroke-linecap="round"/>
+                    </svg>                        
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="./js/main.js"></script>
+    <script src="./js/functions.js"></script>
+    <!-- <script src="./js/slide.js"></script> -->
+</body>
+</html>

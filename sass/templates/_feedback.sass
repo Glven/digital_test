@@ -1,0 +1,154 @@
+.feedback
+    padding: 68px
+    &__form
+        width: 100%
+        border-radius: 24px
+        border: var(--border-width) solid var(--primary-default)
+        padding: 20px 32px
+    .form 
+        &-header
+            display: flex
+            align-items: center
+            gap: 20px
+            &__img
+                width: 45px
+            &__title
+                color: #000
+                font-weight: 500
+                font-size: 20px
+                line-height: 1.4
+                margin-bottom: 2px
+            &__subtitle
+                color: var(--gray)
+                line-height: 1.5
+        &-inputs
+            display: grid
+            margin-top: 20px
+            grid-template-columns: repeat(3, 1fr)
+            gap: 32px 12px
+            &__large
+                grid-column: span 3
+                width: 100%
+                height: 132px
+                .input
+                    line-height: 1.5
+        &__buttons
+            margin-top: 16px
+            display: flex
+            align-items: center
+            gap: 20px
+        &__submit-btn
+            max-width: 224px
+        &__check
+            display: flex
+            align-items: center
+            gap: 12px
+            label
+                font-size: 14px
+                color: var(--gray)
+                a
+                    color: var(--gray)
+                    font-weight: 500
+    .modal
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: 10
+        background: rgba(#000, 0.5)
+        display: none
+        opacity: 0
+        transition: all 0.3s
+        transition-behavior: allow-discrete
+        place-items: center
+        &-container
+            padding: 28px
+            text-align: center
+            max-width: 422px
+            width: 100%
+            border-radius: 24px
+            background: var(--light)
+            position: relative
+        &__img
+            width: 100px
+            margin-bottom: 24px
+        &__title
+            font-size: 20px
+            font-weight: 500
+            line-height: 1.4
+        &__subtitle
+            font-size: 14px
+            line-height: 1.5
+            color: var(--gray)
+        &__btn
+            margin-top: 24px
+        &__close
+            position: absolute
+            top: 0
+            left: 100%
+            transform: translateX(12px)
+        &.active
+            display: grid
+            opacity: 1
+            @starting-style
+                opacity: 0
+@media screen and (max-width: 1400px)
+    .feedback
+        padding: 48px
+        &__form
+            padding: 16px 24px
+        .form
+            &-header
+                &__img
+                    width: 36px
+                &__title
+                    font-size: 16px
+            &-inputs
+                margin-top: 16px
+                gap: 28px 12px
+                &__large
+                    height: 68px
+@media screen and ( max-width: 767px ) 
+    .feedback
+        padding: 24px
+        &__form
+            padding: 16px
+        .form
+            &-header
+                align-items: flex-start
+                &__img
+                    flex-shrink: 0
+                &__title
+                    font-size: 14px
+            &-inputs
+                margin-top: 28px
+                grid-template-columns: 1fr
+                gap: 8px
+                .form-control
+                    grid-column: span 1
+                    width: 100%
+            &__buttons
+                flex-direction: column
+                gap: 20px
+            &__check
+                justify-content: center
+        .modal
+            background: var(--light)
+            &-container
+                position: static
+            &__img
+                width: 80px
+                margin-bottom: 16px
+            &__title
+                font-size: 16px
+            &__subtitle
+                font-size: 12px
+            &__btn
+                margin-top: 16px
+            &__close
+                transform: translate(-28px * 2, 28px) !important
+                top: 0
+                right: 0
+                z-index: 20
+    
