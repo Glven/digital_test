@@ -83,9 +83,6 @@ export function slider(id) {
             if (diff > 0) prevSlide();
             else nextSlide();
         }
-
-        startX = null;
-        endX = null;
     });
 
     function switchNewDotsElem() {
