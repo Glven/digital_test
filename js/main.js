@@ -51,6 +51,9 @@ function createProductBlock (product) {
     heartBtn.classList.add('block__btn', 'icon')
     heartBtn.innerHTML = heart
 
+    equalBtn.addEventListener('click', () => toggleActiveClass(equalBtn))
+    heartBtn.addEventListener('click', () => toggleActiveClass(heartBtn))
+
     productBLockButtons.appendChild(equalBtn)
     productBLockButtons.appendChild(heartBtn)
 
@@ -84,6 +87,10 @@ function createProductBlock (product) {
 
     return productBlock
 } 
+
+function toggleActiveClass (elem) {
+    return elem.classList.toggle('active')
+}
 
 function createProductTitle (product) {
     const title = document.createElement('p')
@@ -346,4 +353,4 @@ function handleInputChange (input) {
     input.classList.remove('invalid')
 } 
 
-slider('products-wrapper')
+document.addEventListener('DOMContentLoaded', () => slider('products-wrapper'))

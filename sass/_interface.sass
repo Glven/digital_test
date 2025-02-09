@@ -167,6 +167,11 @@ textarea
         background: var(--primary-default)
         svg
             fill: var(--light)
+    &.active
+        box-shadow: var(--box-shadow-active)
+        background: var(--primary-default)
+        svg
+            fill: var(--light)
     &--secondary
         background: var(--secondary-default) 
         svg
@@ -183,7 +188,6 @@ textarea
 .form-control
     width: 100%
     position: relative
-    height: 52px
     border-radius: var(--border-radius)
     .clear
         position: absolute
@@ -202,21 +206,16 @@ textarea
         background: transparent
         outline: none
     .error
-        position: absolute
-        top: 100%
-        left: 0
-        z-index: 100
-        height: 20px
         display: none
         transition: all 0.2s
         transition-behavior: allow-discrete
         font-size: 10px
         color: red
-        transform: translateY(4px)
+        margin-top: 4px
         opacity: 0
     .input
         border: none
-        height: 100%
+        height: 52px
         padding: 16px
         background: #F5F8FA
         transition: all 0.2s
@@ -274,6 +273,20 @@ textarea
                 background: var(--secondary-hover)
             &:active
                 background: var(--secondary-active)
+    &-dots
+        display: none
+        margin-top: 12px
+        justify-content: center
+        gap: 8px
+        &__elem
+            width: 6px
+            height: 6px
+            border-radius: 8px
+            display: block
+            transition: all 0.2s
+            background: #CBCFD3
+            &.active
+                background: var(--primary-default)
 @media screen and (max-width: 1400px)
     :root 
         --border-radius: 8px
@@ -284,7 +297,8 @@ textarea
     .title
         font-size: 24px
     .form-control
-        height: 44px
+        .input
+            height: 44px
 @media screen and (min-width: 1025px) and (max-width: 1599px)
     :root
         --sticker-font-size: 10px
@@ -295,10 +309,41 @@ textarea
 @media screen and (max-width: 767px)
     .slider
         &__buttons
-            top: 100%
-            left: 0
-            transform: translateY(20px) 
-            justify-content: center
-            width: 100%
+            display: none
+        &-dots
             display: flex
-            gap: 20px
+@media (hover: none)
+    .checkbox
+        &__elem
+            &:hover
+                background: var(--secondary-default)
+    .btn
+        &--bordered
+            &:hover
+                background: var(--primary-default)
+        &--primary
+            &:hover
+                background: var(--primary-default)
+                border-color: var(--primary-default)
+        &--secondary
+            &:hover
+                background: var(--secondary-default)
+                border-color: var(--secondary-default)
+    .icon
+        &:hover
+            box-shadow: inherit
+        &--secondary
+            &:hover
+                background: var(--secondary-default)
+                svg
+                    fill: var(--primary-default)
+    .form-control
+        .input
+            &:hover
+                background: #F5F8FA
+    .slider
+        &__buttons
+            .slide-btn
+                &:hover
+                    background: transparent
+    
