@@ -7,12 +7,12 @@ export function slider(id) {
     let sliderDotsElem = [];
     let totalItems;
     let maxIndex;
-    let startX = 0;
-    let endX = 0;
+    let startX = null;
+    let endX = null;
 
     let itemsPerPage = getItemsPerPage();
     let currentIndex = 0;
-    
+
     sliderWrapper.style.transition = "transform 0.3s ease-in-out";
 
     function getItemsPerPage() {
@@ -57,7 +57,7 @@ export function slider(id) {
     function updateSliderFunc() {
         itemsPerPage = getItemsPerPage();
         totalItems = sliderItems.length;
-        maxIndex = Math.ceil(totalItems / itemsPerPage) - 1;
+        maxIndex = Math.max(0, Math.ceil(totalItems / itemsPerPage) - 1);
         updateSliderItemsStyles();
         updateSlider();
         updateSliderDots();
@@ -68,6 +68,7 @@ export function slider(id) {
 
     sliderWrapper.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
+        endX = startX;
     }, { passive: true });
 
     sliderWrapper.addEventListener('touchmove', (e) => {
@@ -75,17 +76,17 @@ export function slider(id) {
     }, { passive: true });
 
     sliderWrapper.addEventListener('touchend', () => {
-        swipeCalc();
-    });
-
-    function swipeCalc() {
-        if (!startX || !endX) return;
+        if (startX === null || endX === null) return;
         const diff = endX - startX;
-        if (Math.abs(diff) < 30) return;
-        if (diff > 0) prevSlide();
-        else nextSlide();
-        startX = endX = 0;
-    }
+        
+        if (Math.abs(diff) > 30) {
+            if (diff > 0) prevSlide();
+            else nextSlide();
+        }
+
+        startX = null;
+        endX = null;
+    });
 
     function switchNewDotsElem() {
         sliderDotsElem.forEach((dot, index) => {
