@@ -112,6 +112,11 @@ export function slider (id) {
             if (i === currentIndex) {
                 dotsElem.classList.add('active')
             }
+            dotsElem.addEventListener('click', () => {
+                swipeSlides(index, currentIndex)
+                currentIndex = index;
+                switchNewDotsElem()
+            })
             sliderDotsElem.push(dotsElem)
         }
 
