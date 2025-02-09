@@ -4,7 +4,7 @@ export function slider (id) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const sliderDots = document.getElementById('slider-dots')
-    const sliderDotsElem = []
+    let sliderDotsElem = []
     let totalItems;
     let maxIndex;
     let startX;
@@ -83,10 +83,10 @@ export function slider (id) {
 
         if (diff > 0) {
             prevSlide()
-            return
-        } 
+        } else {
+            nextSlide()
+        }
 
-        nextSlide()
 
         startX = undefined
         endX = undefined
@@ -104,20 +104,25 @@ export function slider (id) {
     function updateSliderDots () {
         if (window.innerWidth >= 768) return;
 
+        sliderDotsElem = []
+
         for (let i = 0; i <= maxIndex; i++) {
             const dotsElem = document.createElement('span')
             dotsElem.classList.add('slider-dots__elem')
             if (i === currentIndex) {
                 dotsElem.classList.add('active')
             }
-            sliderDots.appendChild(dotsElem)
             sliderDotsElem.push(dotsElem)
         }
 
+        if (sliderDots.children.length === sliderDotsElem.length) return;
+
+        sliderDots.innerHTML = ''
+
         sliderDotsElem.forEach((elem, index) => {
+            sliderDots.appendChild(elem)
             elem.addEventListener('click', () => {
                 swipeSlides(index, currentIndex)
-
                 currentIndex = index;
             })
         })
