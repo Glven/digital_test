@@ -63,15 +63,15 @@ export function slider (id) {
     
     window.addEventListener('resize', updateSliderFunc)
 
-    sliderWrapper.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX
+    sliderWrapper.addEventListener('start', (e) => {
+        startX = e.es[0].clientX
     }, {passive: true})
 
-    sliderWrapper.addEventListener('touchmove', (e) => {
-        endX = e.touches[0].clientX
+    sliderWrapper.addEventListener('move', (e) => {
+        endX = e.es[0].clientX
     }, {passive: true})
 
-    sliderWrapper.addEventListener('touchend', () => {
+    sliderWrapper.addEventListener('end', () => {
         swipeCalc()
     })
 
@@ -82,11 +82,14 @@ export function slider (id) {
 
         if (diff > 0) {
             prevSlide()
+            switchNewDotsElem()
+            return;
         } else {
             nextSlide()
+            switchNewDotsElem()
+            return;
         }
 
-        switchNewDotsElem()
     }
 
     function switchNewDotsElem () {
@@ -117,12 +120,12 @@ export function slider (id) {
         sliderDots.innerHTML = ''
 
         sliderDotsElem.forEach((elem, index) => {
-            sliderDots.appendChild(elem)
             elem.addEventListener('click', () => {
                 swipeSlides(index, currentIndex)
                 currentIndex = index;
                 switchNewDotsElem()
             })
+            sliderDots.appendChild(elem)
         })
     }
 
