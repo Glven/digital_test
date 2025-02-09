@@ -76,7 +76,6 @@ export function slider(id) {
     }, { passive: true });
 
     sliderWrapper.addEventListener('touchend', () => {
-        if (startX === null || endX === null) return;
         const diff = endX - startX;
         
         if (Math.abs(diff) > 30) {
