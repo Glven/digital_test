@@ -31,7 +31,6 @@ export function slider (id) {
     function updateSlider() {
         const itemWidth = sliderWrapper.children[0].offsetWidth
         sliderWrapper.style.transform = `translateX(-${currentIndex * (itemWidth + 8) * itemsPerPage}px)`
-        switchNewDotsElem()
     }
 
     function nextSlide() {
@@ -66,11 +65,11 @@ export function slider (id) {
 
     sliderWrapper.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX
-    })
+    }, {passive: true})
 
     sliderWrapper.addEventListener('touchmove', (e) => {
         endX = e.touches[0].clientX
-    })
+    }, {passive: true})
 
     sliderWrapper.addEventListener('touchend', () => {
         swipeCalc()
@@ -87,9 +86,7 @@ export function slider (id) {
             nextSlide()
         }
 
-
-        startX = undefined
-        endX = undefined
+        switchNewDotsElem()
     }
 
     function switchNewDotsElem () {
@@ -124,6 +121,7 @@ export function slider (id) {
             elem.addEventListener('click', () => {
                 swipeSlides(index, currentIndex)
                 currentIndex = index;
+                switchNewDotsElem()
             })
         })
     }
