@@ -1,150 +1,114 @@
-export function slider (id) {
+export function slider(id) {
     const sliderWrapper = document.getElementById(id);
-    const sliderItems = sliderWrapper.children
+    const sliderItems = [...sliderWrapper.children];
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const sliderDots = document.getElementById('slider-dots')
-    let sliderDotsElem = []
+    const sliderDots = document.getElementById('slider-dots');
+    let sliderDotsElem = [];
     let totalItems;
     let maxIndex;
-    let startX;
-    let endX;
+    let startX = 0;
+    let endX = 0;
 
     let itemsPerPage = getItemsPerPage();
     let currentIndex = 0;
-
-
-    function updateSliderItemsStyles () {
-        Array.from(sliderItems).forEach(si => {
-            si.style.width = `${98 / itemsPerPage}%`
-        })
-    }
-
+    
+    sliderWrapper.style.transition = "transform 0.3s ease-in-out";
 
     function getItemsPerPage() {
-        if (window.innerWidth > 1200) return 5
-        if (window.innerWidth > 768 && window.innerWidth <= 1200) return 4
-        if (window.innerWidth > 600 && window.innerWidth <= 768) return 3
-        return 2
+        if (window.innerWidth > 1200) return 5;
+        if (window.innerWidth > 768) return 4;
+        if (window.innerWidth > 600) return 3;
+        return 2;
+    }
+
+    function updateSliderItemsStyles() {
+        const width = `${98 / itemsPerPage}%`;
+        sliderItems.forEach((item) => {
+            item.style.width = width;
+        });
     }
 
     function updateSlider() {
-        const itemWidth = sliderWrapper.children[0].offsetWidth
-        sliderWrapper.style.transform = `translateX(-${currentIndex * (itemWidth + 8) * itemsPerPage}px)`
+        const itemWidth = sliderItems[0].offsetWidth;
+        requestAnimationFrame(() => {
+            sliderWrapper.style.transform = `translateX(-${currentIndex * (itemWidth + 8) * itemsPerPage}px)`;
+            switchNewDotsElem();
+        });
     }
 
     function nextSlide() {
         if (currentIndex < maxIndex) {
-            currentIndex++
-            updateSlider()
+            currentIndex++;
+            updateSlider();
         }
     }
 
     function prevSlide() {
         if (currentIndex > 0) {
-            currentIndex--
-            updateSlider()
+            currentIndex--;
+            updateSlider();
         }
     }
 
-    nextBtn.addEventListener('click', nextSlide)
-    prevBtn.addEventListener('click', prevSlide)
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
 
-    const updateSliderFunc = () => {
-        totalItems = sliderItems.length
-        maxIndex = Math.ceil(totalItems / itemsPerPage) - 1
-        itemsPerPage = getItemsPerPage()
-        updateSliderItemsStyles()
-        updateSlider()
-        updateSliderDots()
+    function updateSliderFunc() {
+        itemsPerPage = getItemsPerPage();
+        totalItems = sliderItems.length;
+        maxIndex = Math.ceil(totalItems / itemsPerPage) - 1;
+        updateSliderItemsStyles();
+        updateSlider();
+        updateSliderDots();
     }
 
-    updateSliderFunc()
-    
-    window.addEventListener('resize', updateSliderFunc)
+    window.addEventListener('resize', updateSliderFunc);
+    updateSliderFunc();
 
-    sliderWrapper.addEventListener('start', (e) => {
-        startX = e.es[0].clientX
-    }, {passive: true})
+    sliderWrapper.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
 
-    sliderWrapper.addEventListener('move', (e) => {
-        endX = e.es[0].clientX
-    }, {passive: true})
+    sliderWrapper.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    }, { passive: true });
 
-    sliderWrapper.addEventListener('end', () => {
-        swipeCalc()
-    })
+    sliderWrapper.addEventListener('touchend', () => {
+        swipeCalc();
+    });
 
     function swipeCalc() {
         if (!startX || !endX) return;
-        
-        const diff = endX - startX
-
-        if (diff > 0) {
-            prevSlide()
-            switchNewDotsElem()
-            return;
-        } else {
-            nextSlide()
-            switchNewDotsElem()
-            return;
-        }
-
+        const diff = endX - startX;
+        if (Math.abs(diff) < 30) return;
+        if (diff > 0) prevSlide();
+        else nextSlide();
+        startX = endX = 0;
     }
 
-    function switchNewDotsElem () {
-        for ( let i = 0; i < sliderDotsElem.length; i++ ) {
-            sliderDotsElem[i].classList.remove('active')
-            if (i === currentIndex) {
-                sliderDotsElem[i].classList.add('active')
-            }
-        }
+    function switchNewDotsElem() {
+        sliderDotsElem.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
     }
 
-    function updateSliderDots () {
+    function updateSliderDots() {
         if (window.innerWidth >= 768) return;
 
-        sliderDotsElem = []
+        if (sliderDots.children.length === maxIndex + 1) return;
 
-        for (let i = 0; i <= maxIndex; i++) {
-            const dotsElem = document.createElement('span')
-            dotsElem.classList.add('slider-dots__elem')
-            if (i === currentIndex) {
-                dotsElem.classList.add('active')
-            }
-            dotsElem.addEventListener('click', () => {
-                swipeSlides(index, currentIndex)
-                currentIndex = index;
-                switchNewDotsElem()
-            })
-            sliderDotsElem.push(dotsElem)
-        }
-
-        if (sliderDots.children.length === sliderDotsElem.length) return;
-
-        sliderDots.innerHTML = ''
-
-        sliderDotsElem.forEach((elem, index) => {
-            elem.addEventListener('click', () => {
-                swipeSlides(index, currentIndex)
-                currentIndex = index;
-                switchNewDotsElem()
-            })
-            sliderDots.appendChild(elem)
-        })
-    }
-
-    function swipeSlides (currentIndex, prevIndex) {
-        const isToNext = currentIndex > prevIndex
-
-        while (currentIndex !== prevIndex) {
-            if (isToNext) {
-                nextSlide()
-                currentIndex--;
-            } else {
-                prevSlide()
-                currentIndex++;
-            }
-        }
+        sliderDots.innerHTML = "";
+        sliderDotsElem = Array.from({ length: maxIndex + 1 }, (_, i) => {
+            const dot = document.createElement('span');
+            dot.classList.add('slider-dots__elem');
+            if (i === currentIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateSlider();
+            });
+            sliderDots.appendChild(dot);
+            return dot;
+        });
     }
 }

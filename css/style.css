@@ -348,7 +348,7 @@ textarea {
   background: var(--primary-default);
 }
 .icon.active svg {
-  fill: var(--light);
+  fill: var(--light) !important;
 }
 .icon--secondary {
   background: var(--secondary-default);
@@ -579,7 +579,7 @@ textarea {
     display: flex;
   }
 }
-@media (hover: none) {
+@media (hover: none) and (pointer: coarse) {
   .checkbox__elem:hover {
     background: var(--secondary-default);
   }
@@ -595,8 +595,19 @@ textarea {
     border-color: var(--secondary-default);
   }
   .icon:hover {
-    -webkit-box-shadow: inherit;
-            box-shadow: inherit;
+    -webkit-box-shadow: var(--box-shadow-default);
+            box-shadow: var(--box-shadow-default);
+  }
+  .icon:hover svg {
+    fill: var(--inherit);
+  }
+  .icon:active {
+    -webkit-box-shadow: var(--box-shadow-active);
+            box-shadow: var(--box-shadow-active);
+    background: var(--primary-default);
+  }
+  .icon:active svg {
+    fill: var(--light);
   }
   .icon--secondary:hover {
     background: var(--secondary-default);
